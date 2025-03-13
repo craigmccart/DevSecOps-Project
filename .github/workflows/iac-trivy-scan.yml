@@ -1,0 +1,22 @@
+name: IaC Trivy Analysis
+on:
+  push:
+    branches:
+      - main
+jobs:
+  security-scan:
+    name: IaC Security Scan
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+        
+      - name: Run Trivy vulnerability scanner
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: fs
+          scanners: misconfig
+          scan-ref: ${{ github.workspace }}
+          hide-progress: false
+          format: table
+          ignore-unfixed: true 
