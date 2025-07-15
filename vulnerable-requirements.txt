@@ -1,0 +1,5 @@
+# This file lists dependencies for the intentionally vulnerable app.
+# It includes a package with a known vulnerability for demonstration purposes.
+Flask>=1.0,<2.0
+PyJWT<2.0
+urllib3==1.26.4 # Known vulnerability: CVE-2021-33503 (CRLF injection)

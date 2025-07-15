@@ -1,0 +1,5 @@
+Flask>=2.0
+PyJWT>=2.0
+Werkzeug>=2.0
+requests>=2.25
+# urllib3 is a dependency of requests, SCA scanner will check it

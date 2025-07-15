@@ -1,0 +1,4 @@
+name: "Vulnerable CodeQL config"
+
+paths:
+  - vulnerable_app.py
