@@ -31,15 +31,21 @@ resource "aws_s3_bucket_public_access_block" "devsecops_bucket_pab" {
   restrict_public_buckets = true
 }
 
-# REMEDIATED: Enable server-side encryption by default to fix AVD-AWS-0088 and AVD-AWS-0132
+# REMEDIATED: Create a customer-managed KMS key for S3 encryption.
+resource "aws_kms_key" "s3_kms_key" {
+  description             = "KMS key for DevSecOps project S3 bucket encryption"
+  deletion_window_in_days = 7
+  enable_key_rotation   = true
+}
+
+# REMEDIATED: Enable server-side encryption using the customer-managed KMS key to fix AVD-AWS-0088 and AVD-AWS-0132.
 resource "aws_s3_bucket_server_side_encryption_configuration" "devsecops_bucket_sse" {
   bucket = aws_s3_bucket.devsecops-project-bucket.id
 
   rule {
     apply_server_side_encryption_by_default {
-      # Using AWS-managed keys is a strong security baseline.
-      # A customer-managed key (CMK) could be used for even greater control.
-      sse_algorithm = "AES256"
+      sse_algorithm     = "aws:kms"
+      kms_master_key_id = aws_kms_key.s3_kms_key.arn
     }
   }
 }
