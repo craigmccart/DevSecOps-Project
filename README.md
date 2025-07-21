@@ -2,7 +2,7 @@
 
 **Author:** Craig McCart
 
-*   [LinkedIn](https://www.linkedin.com/in/your-profile-url) | [GitHub](https://github.com/your-github-username)
+*   [LinkedIn](https://www.linkedin.com/in/craigmccart) | [GitHub](https://github.com/craigmccart)
 
 
 ## 1. Introduction
